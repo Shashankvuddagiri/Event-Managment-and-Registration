@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Event Management Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <meta name="theme-color" content="#0b1220">
+</head>
+<body>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <div class="logo">Cloud Events</div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="actions">
+      <button id="themeToggle" aria-pressed="false" title="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1 class="headline">Create, Manage, and Celebrate — Seamlessly</h1>
+      <p class="subhead">Powerful event management built on modern web best practices.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#events">Explore Events</a>
+        <a class="btn btn-ghost" href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="features" class="features container reveal">
+      <h2>Features</h2>
+      <div class="grid">
+        <article class="feature card tilt">
+          <h3>Real-time Registrations</h3>
+          <p>Save attendee lists to local storage with instant preview.</p>
+        </article>
+        <article class="feature card tilt">
+          <h3>Smooth Animations</h3>
+          <p>Polished UI with motion, focus states and micro-interactions.</p>
+        </article>
+        <article class="feature card tilt">
+          <h3>Accessible & Responsive</h3>
+          <p>Designed to work across devices with keyboard support.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="events" class="events container">
+      <h2 class="reveal">Upcoming Events</h2>
+      <div class="cards">
+        <div class="card reveal" data-event="Hackathon 2026">
+          <h3>Hackathon 2026</h3>
+          <p>24-hour coding challenge</p>
+          <button class="btn" data-open="Hackathon 2026">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="AI Workshop">
+          <h3>AI Workshop</h3>
+          <p>Introduction to AI & Cloud</p>
+          <button class="btn" data-open="AI Workshop">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="Tech Talk">
+          <h3>Tech Talk</h3>
+          <p>Future of Cloud Computing</p>
+          <button class="btn" data-open="Tech Talk">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="Cloud Security Summit">
+          <h3>Cloud Security Summit</h3>
+          <p>Best practices in cloud security and identity</p>
+          <button class="btn" data-open="Cloud Security Summit">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="DevOps Bootcamp">
+          <h3>DevOps Bootcamp</h3>
+          <p>Hands-on CI/CD and automation workshop</p>
+          <button class="btn" data-open="DevOps Bootcamp">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="UX/UI Design Sprint">
+          <h3>UX/UI Design Sprint</h3>
+          <p>Rapid prototyping and user testing</p>
+          <button class="btn" data-open="UX/UI Design Sprint">Register</button>
+        </div>
+
+        <div class="card reveal" data-event="Data Engineering Meetup">
+          <h3>Data Engineering Meetup</h3>
+          <p>Streaming, pipelines and analytics</p>
+          <button class="btn" data-open="Data Engineering Meetup">Register</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container reveal">
+      <h2>Contact</h2>
+      <form id="contactForm" class="form">
+        <label>Full name <input type="text" id="name" required></label>
+        <label>Email <input type="email" id="email" required></label>
+        <label>Event <input type="text" id="event" readonly></label>
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
+          <button type="button" class="btn btn-ghost" id="closeBtn">Close</button>
+        </div>
+        <p id="msg" class="muted"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Cloud Events — Built with care</div>
+  </footer>
+
+  <!-- lightweight modal (for accessibility) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <h2>Event Registration</h2>
+      <p id="modal-event" class="muted"></p>
+      <label>Full name <input type="text" id="modal-name"></label>
+      <label>Email <input type="email" id="modal-email"></label>
+      <div class="form-actions">
+        <button id="modal-submit" class="btn btn-primary">Register</button>
+      </div>
+      <p id="modal-msg" class="muted"></p>
+    </div>
+  </div>
+</body>
+</html>

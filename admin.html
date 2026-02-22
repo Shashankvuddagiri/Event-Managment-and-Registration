@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align:center">Admin Dashboard – Registrations</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="muted">Records: <span id="count">0</span></div>
+      <div>
+        <button id="download" class="btn">Download CSV</button>
+        <button id="clear" class="btn btn-ghost">Clear</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody id="data"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('registrations')||'[]');
+    const table = document.getElementById('data');
+    const count = document.getElementById('count');
+    count.textContent = data.length;
+    data.forEach(item=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${item.name}</td><td>${item.email}</td><td>${item.event}</td>`;
+      table.appendChild(tr);
+    });
+
+    document.getElementById('download').addEventListener('click', ()=>{
+      if(!data.length) return alert('No records');
+      const csv = ['Name,Email,Event', ...data.map(d=>`${d.name},${d.email},${d.event}`)].join('\n');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='registrations.csv'; a.click();
+    });
+
+    document.getElementById('clear').addEventListener('click', ()=>{
+      if(!confirm('Clear all registrations?')) return; localStorage.removeItem('registrations'); location.reload();
+    });
+  </script>
+</body>
+</html>
